@@ -1,19 +1,27 @@
 <?php
 
 require_once ('connect.php');
+	if (isset($_POST['submit'])) {
+		$nom = ($_POST['nom']);
+		$prenom = ($_POST['prenom']);
+		$email = ($_POST['email']);
+		$gender = $_POST['gender'];
+		$age = $_POST['age'];
+		if($nom&&$prenom&&$email&&$gender&&$age)
+
 	if (isset($_POST) & !empty($_POST)) {
 		$nom = ($_POST['nom']);
 		$prenom = ($_POST['prenom']);
 		$email = ($_POST['email']);
 		$gender = $_POST['gender'];
 		$age = $_POST['age'];
-
+		if($nom&&$prenom&&$email&&$gender&&$age)
+		{
 		$CreateSql = "INSERT INTO etudiant (first_name,last_name,email ,gender, age)  VALUES('$nom', '$prenom', '$email', '$gender', '$age') ";
 		$res = pg_query($conn, $CreateSql) or die(pg_last_error($conn));
-		if ($res) {
-			$message = "insertion reussi avec succès";
 		}else{
-			$erreur = "erreur d'insertion a la base";
+			echo "Veuillez saisir tous les champs";
+
 		}
 	}
 
